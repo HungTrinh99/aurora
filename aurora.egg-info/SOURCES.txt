@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+aurora/__init__.py
+aurora.egg-info/PKG-INFO
+aurora.egg-info/SOURCES.txt
+aurora.egg-info/dependency_links.txt
+aurora.egg-info/top_level.txt
+aurora/text_preprocessing/__init__.py
+aurora/text_preprocessing/text.py
+tests/__init__.py
+tests/preprocessing/__init__.py
+tests/preprocessing/test_text_preprocessing.py
