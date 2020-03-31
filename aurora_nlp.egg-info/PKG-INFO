@@ -1,12 +1,19 @@
 Metadata-Version: 2.1
 Name: aurora-nlp
-Version: 1.0.2
+Version: 1.0.6
 Summary: A small lib for reprocessing text
 Home-page: UNKNOWN
 Author: Nga Vu
 Author-email: ngavu28091994@gmail.com
 License: UNKNOWN
-Description: UNKNOWN
+Description: ## Introduction
+        This library help to preprocessing Vietnamese text
+        ### How to use
+        ```
+        from aurora import text_preprocessing
+        text = "text"
+        new_text = text_preprocessing(text)
+        ```
 Keywords: aurora
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3

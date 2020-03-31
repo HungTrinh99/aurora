@@ -4,7 +4,7 @@ with open("README.md", "r") as rm:
     long_description = rm.read()
 setuptools.setup(
     name="aurora-nlp",
-    version="1.0.2",
+    version="1.0.6",
     author="Nga Vu",
     author_email="ngavu28091994@gmail.com",
     description="A small lib for reprocessing text",

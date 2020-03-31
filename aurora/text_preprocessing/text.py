@@ -1,5 +1,5 @@
 import re
-
+import string
 replace_list = {
     'òa': 'oà', 'óa': 'oá', 'ỏa': 'oả', 'õa': 'oã', 'ọa': 'oạ', 'òe': 'oè', 'óe': 'oé', 'ỏe': 'oẻ',
     'õe': 'oẽ', 'ọe': 'oẹ', 'ùy': 'uỳ', 'úy': 'uý', 'ủy': 'uỷ', 'ũy': 'uỹ', 'ụy': 'uỵ', 'uả': 'ủa',
@@ -96,8 +96,6 @@ class Text:
             self.text = self.text.replace(k, v)
 
     def regex_normalize(self):
-        # Remove các ký tự kéo dài: vd: đẹppppppp
-        self.text = re.sub(r'([A-Z])\1+', lambda m: m.group(1).upper(), self.text, flags=re.IGNORECASE)
         patterns = ['\[([^\]=]+)(?:=[^\]]+)?\].*?\[\/\\1\\n]', r'\b(?:(?:https?|ftp)://)?\w[\w-]*(?:\.[\w-]+)+\S*',
                     "[\(\[].*?[\)\]]"]
         for pattern in patterns:
@@ -106,9 +104,18 @@ class Text:
         translator = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
         self.text = self.text.translate(translator)
 
+        # remove nốt những ký tự thừa
+        self.text = self.text.replace(u'"', u' ')
+        self.text = self.text.replace(u'️', u'')
+        self.text = self.text.replace('🏻', '')
+
         self.text = re.sub(r'(\D)\1+', r'\1', self.text)
         self.text = self.text.replace('\r', '')
         # Remove numbers
         self.text = re.sub(r'\d+', ' ', self.text)
         # Removing multiple spaces
         self.text = re.sub(r'\s+', ' ', self.text)
+        # Remove các ký tự kéo dài: vd: đẹppppppp
+        self.text = re.sub(r'([A-Z])\1+', lambda m: m.group(1), self.text, flags=re.IGNORECASE)
+
+        self.text = self.text.strip()
